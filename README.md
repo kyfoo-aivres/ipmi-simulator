@@ -97,4 +97,15 @@ ipmitool [options] chassis bootparam get 5
 
 # Set Boot Target
 ipmitool [options] chassis bootdev [none|pxe|disk|cdrom|bios]
+
+# --- IPMI v2.0 Specific Commands (Requires -I lanplus) ---
+
+# Verify IPMI v2.0 Cipher Suites
+ipmitool [options] -I lanplus channel getciphers ipmi
+
+# Serial Over LAN (SOL)
+ipmitool [options] -I lanplus sol info
+ipmitool [options] -I lanplus sol activate
+# (To exit an active SOL session, type: `~.` or `~?` for help)
+ipmitool [options] -I lanplus sol deactivate
 ```
