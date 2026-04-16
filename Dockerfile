@@ -34,6 +34,9 @@ RUN mkdir -p /tmp/chassis
 
 COPY . /tmp/ipmisim
 
+# Convert DOS line endings to Unix to prevent 'Invalid configuration option' errors
+RUN apk add --no-cache dos2unix && dos2unix /tmp/ipmisim/lan.conf /tmp/ipmisim/sim.emu
+
 EXPOSE 623/udp
 
 CMD ["ipmi_sim", "-n", "-c", "/tmp/ipmisim/lan.conf", "-f", "/tmp/ipmisim/sim.emu"]
